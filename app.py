@@ -34,7 +34,7 @@ st.info('✨ Checks for the number of scanned/digitally created PDFs from a corp
 st.info('☢ The app\'s execution time may vary depending on the size/number of the uploaded PDFs.')
 
 uploaded_files = st.file_uploader("Upload PDFs 🚀", type=["pdf"], accept_multiple_files=True)
-with st.spinner(f"Working... 💫"):
+with st.spinner("Working... 💫"):
    if uploaded_files:
       for uploaded_file in uploaded_files:
          with open(os.path.join(input_path,uploaded_file.name),"wb") as f:
@@ -69,11 +69,11 @@ with st.spinner(f"Working... 💫"):
          st.dataframe(digital_docs_df)
 
       if len(scanned_docs_df) > 0:
-         check = st.checkbox("Do you want me to perform OCR for the scanned PDFs? 🤔")
-         if check:
+         if check := st.checkbox(
+             "Do you want me to perform OCR for the scanned PDFs? 🤔"):
             print("Generating Zip...")
             compress()
-            with open(zip_path + 'OCR_PDFs.zip', "rb") as file:
+            with open(f'{zip_path}OCR_PDFs.zip', "rb") as file:
                if st.download_button(
                                       label="Download Zip file of OCRed PDFs 📑",
                                       data=file,
