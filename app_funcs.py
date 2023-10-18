@@ -24,17 +24,17 @@ def get_all_file_paths(directory):
 
 @st.cache(persist=True,allow_output_mutation=True,show_spinner=False,suppress_st_warning=True)
 def compress():
-   directory = './output'
-   file_paths = get_all_file_paths(directory)
+    directory = './output'
+    file_paths = get_all_file_paths(directory)
 
-   print('Following files will be zipped:')
-   for file_name in file_paths:
-      print(file_name)
+    print('Following files will be zipped:')
+    for file_name in file_paths:
+       print(file_name)
 
-   with zipfile.ZipFile(zip_path + 'OCR_PDFs.zip','w') as zip:
-      for file in file_paths:
-         zip.write(file)
-   print('All files zipped successfully!')
+    with zipfile.ZipFile(f'{zip_path}OCR_PDFs.zip', 'w') as zip:
+        for file in file_paths:
+           zip.write(file)
+    print('All files zipped successfully!')
 
 
 @st.cache(persist=True,allow_output_mutation=True,show_spinner=False,suppress_st_warning=True)
